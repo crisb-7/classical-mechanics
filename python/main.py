@@ -1,25 +1,5 @@
+from ode import *
 import numpy as np
-
-class EulerMethod:
-    
-    @staticmethod
-    def compute(f_init: float, derivative_fn_init, step: float, N: int=10):
-        f_vector = []
-        derivative_fn = derivative_fn_init
-        fn = f_init
-        for _ in range(N):
-            fn = fn + derivative_fn*step
-            f_vector.append(fn)
-        return f_vector
-
-    @staticmethod
-    def compute_generator(f_init: float, derivative_fn_init, step: float, N: int=10):
-        derivative_fn = derivative_fn_init
-        fn = f_init
-        for _ in range(N):
-            fn = fn + derivative_fn*step
-            yield fn
-
 
 def main():
     
@@ -49,6 +29,7 @@ def main():
 
     velocity_iterator = integration_method.compute_generator(f_init=v_initial_y, derivative_fn_init=G, step=STEP, N=N)
 
+    # TODO: implement 2D simulation; currently it's 1D
     for idx, vel in enumerate(velocity_iterator):
         pos = integration_method.compute(f_init=y_initial, derivative_fn_init=vel, step=STEP, N=1)
         position[idx] = pos[0]
