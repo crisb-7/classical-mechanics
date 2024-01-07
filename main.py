@@ -1,18 +1,11 @@
-from ode import *
+# DEPRECATED
+from solvers import *
 import numpy as np
 import matplotlib.pyplot as plt
 
 def main():
     
     # Define constants
-    # TODO: implement interface
-    # TODO: benchmark performance: 
-    #   Native Python, vs NumPy vs NumPy + Numba
-    #   Lazy (?) (generator?) vs eager (?) execution
-    # TODO: numerical error analysis?
-    # TODO: polar coordinates implementation?
-    # TODO: create module for visualization
-    
     G = -9.81
     T_MAX = 2.5
     STEP = 0.05
@@ -41,12 +34,12 @@ def main():
     velocity_x = np.empty_like(position_y)
 
     vel_iterator_y = integration_method.compute_generator(f_init=v_initial_y, 
-                                                          derivative_fn_init=G, 
-                                                          step=STEP, N=N)
+                                                        derivative_fn_init=G, 
+                                                        step=STEP, N=N)
     
     vel_iterator_x = integration_method.compute_generator(f_init=v_initial_x, 
-                                                          derivative_fn_init=0, 
-                                                          step=STEP, N=N)
+                                                        derivative_fn_init=0, 
+                                                        step=STEP, N=N)
 
     indices = [x for x in range(N-1)]
 

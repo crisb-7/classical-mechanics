@@ -1,7 +1,7 @@
-# TODO: use pre-allocated list implementation for performance
-
 class EulerMethod:
     
+    # i dont like this implementation anymore lol
+    # TODO: change integration design - think it through
     @staticmethod
     def compute(f_init: float, derivative_fn_init, step: float, N: int=10):
         f_vector = []
